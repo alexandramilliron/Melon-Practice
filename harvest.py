@@ -15,8 +15,9 @@ class MelonType(object):
         self.first_harvest = first_harvest
         self.color = color
         self.is_seedless = is_seedless
-        self.is_bestseller = is_bestseller
         self.name = name
+        self.is_bestseller = is_bestseller
+
 
     def add_pairing(self, pairing):
         """Add a food pairing to the instance's pairings list."""
@@ -67,7 +68,8 @@ def make_melon_type_lookup(melon_types):
     melon_dict = {}
 
     for melon in melon_types:
-        melon_dict[melon.code] = melon
+        if melon.code not in melon_dict:
+            melon_dict[melon.code] = melon
 
     return melon_dict
 
@@ -100,6 +102,7 @@ def make_melons(melon_types):
     melons = []
 
     melons_by_id = make_melon_type_lookup(melon_types)
+    
     melon_1 = Melon(melons_by_id['yw'], 8, 7, 2, 'Sheila')
     melon_2 = Melon(melons_by_id['yw'], 3, 4, 2, 'Sheila')
     melon_3 = Melon(melons_by_id['yw'], 9, 8, 3, 'Sheila')
