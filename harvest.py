@@ -125,5 +125,39 @@ def get_sellability_report(melons):
         else:
             print(f"Harvested by {melon.harvest_by} from Field {melon.harvest_from} (NOT SELLABLE)")
 
+
+def make_melons_from_file(filename):
+
+    melons = []
+
+    melon_types = make_melon_types()
+    melon_dict = make_melon_type_lookup(melon_types)
+
+    open_file = open(filename)
+
+    for line in open_file:
+        
+        words = line.rstrip().split(" ")
+
+        melon_type = melon_dict[words[5]]
+        shape_rating = words[1]
+        color_rating = words[3]
+        harvest_from = words[11]
+        harvest_by = words[8]
+
+        new_melon = Melon(melon_type, shape_rating, color_rating, harvest_from, harvest_by)
+
+        melons.append(new_melon)
     
+    return melons
+
+
+
+    
+
+
+
+
+
+
 
